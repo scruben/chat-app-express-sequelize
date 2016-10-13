@@ -3,16 +3,6 @@
 const dm = require('./model.js');
 const ut = require('./utils.js');
 
-// exports.getLast = function (req, res) {
-//   res.send(dm.loadMessages(req.query));
-// };
-//
-// exports.post = function (req, res) {
-//   res.send(dm.writeMessage(req.body));
-// };
-
-
-// Async
 exports.getLast = function (req, res) {
   dm.loadMessages(req.query)
     .then(function (data) {
@@ -26,6 +16,7 @@ exports.getLast = function (req, res) {
 exports.post = function (req, res) {
   dm.writeMessage(req.body)
     .then(function (data) {
+      console.log(data);
       res.send(data);
     })
     .catch(function(err){

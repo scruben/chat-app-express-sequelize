@@ -4,15 +4,15 @@ let lastMsgTime=1;
 
 function postMsg (text) {
   $.post('/messages', {content: text}, function (data) {
-    appendMsgs([data]);
+    appendMsgs(data);
   });
 }
 
 function appendMsgs (msgsArr) {
   if (msgsArr.length) {
-    for (let i = 0; i < msgsArr.length; i++) {
+    for (let i = msgsArr.length-1; i >= 0; i--) {
       let msg = msgsArr[i];
-      lastMsgTime = msgsArr[msgsArr.length-1].timestamp;
+      lastMsgTime = msgsArr[0].timestamp;
       let $div = $('<div class="message">');
       $('#messages').append(`
         <div class="message">

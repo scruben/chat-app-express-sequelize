@@ -6,6 +6,7 @@ const fs = require('fs');
 
 //const dm = require('./datamanager.js');
 const router = require('./router.js');
+const db = require('./db.js');
 
 var app = express();
 
@@ -15,4 +16,6 @@ app.use(function (req, res) {
   res.status(404).sendFile(__dirname + '/static/404.html');
 });
 
-app.listen(8080);
+db.sequelize.sync().then(function() {
+  app.listen(8080);
+});
